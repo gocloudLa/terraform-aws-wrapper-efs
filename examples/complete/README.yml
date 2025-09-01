@@ -1,0 +1,6 @@
+title: "Complete Example"
+description: "This example demonstrates the configuration of an EFS (Elastic File System) with multiple access points and their respective root directories, including permissions and ownership settings."
+main_purpose: "The main purpose is to set up an EFS with specific access points and directory configurations."
+key_features:
+  - "**Root Access Point**: Sets up the root directory with a path of '/' and specific permissions and ownership."
+  - "**Example Access Point**: Sets up an additional directory with a path of '/example' and specific permissions and ownership."
