@@ -15,7 +15,7 @@ The Terraform Wrapper for EFS simplifies the creation of Amazon's Elastic File S
 ### 🔗 External Modules
 | Name | Version |
 |------|------:|
-| [terraform-aws-modules/efs/aws](https://github.com/terraform-aws-modules/efs-aws) | 1.8.0 |
+| <a href="https://github.com/terraform-aws-modules/terraform-aws-efs" target="_blank">terraform-aws-modules/efs/aws</a> | 1.8.0 |
 
 
 
