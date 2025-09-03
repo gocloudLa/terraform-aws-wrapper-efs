@@ -77,3 +77,4 @@ input_table: |
   | subnet_name | (optional) Custom Subnet Filter | `string` | ``${local.common_name}-private*` (dmc-prd-private*)` | no |
   | deny_nonsecure_transport_via_mount_target | Determines whether to use the common policy option for denying nonsecure transport which allows all AWS principals when accessed via EFS mounted target | `bool` | `true` | no |
   | protection | A map of file protection configurations | `any` | `{}` | no |
+  | tags | A mapping of tags to assign to all resources | `map` | `{}` | no |
