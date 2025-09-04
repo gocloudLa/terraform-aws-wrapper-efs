@@ -2,7 +2,6 @@ module "wrapper_efs" {
   source = "../../"
 
   metadata = local.metadata
-  project  = local.project
 
   efs_parameters = {
     "00" = {
