@@ -5,6 +5,7 @@ module "efs" {
   for_each = var.efs_parameters
 
   name                                  = "${local.common_name}-${each.key}"
+  region                                = try(each.value.region, var.efs_defaults.region, null)
   access_points                         = try(each.value.access_points, var.efs_defaults.access_points, {})
   attach_policy                         = try(each.value.attach_policy, var.efs_defaults.attach_policy, true)
   availability_zone_name                = try(each.value.availability_zone_name, var.efs_defaults.availability_zone_name, null)
@@ -22,25 +23,26 @@ module "efs" {
   mount_targets                         = try(each.value.mount_targets, var.efs_defaults.mount_targets, { for k, v in data.aws_subnets.this[each.key].ids : k => { subnet_id = v } })
   override_policy_documents             = try(each.value.override_policy_documents, var.efs_defaults.override_policy_documents, [])
   performance_mode                      = try(each.value.performance_mode, var.efs_defaults.performance_mode, null)
-  policy_statements                     = try(each.value.policy_statements, var.efs_defaults.policy_statements, [])
+  policy_statements                     = try(each.value.policy_statements, var.efs_defaults.policy_statements, null)
   provisioned_throughput_in_mibps       = try(each.value.provisioned_throughput_in_mibps, var.efs_defaults.provisioned_throughput_in_mibps, null)
-  replication_configuration_destination = try(each.value.replication_configuration_destination, var.efs_defaults.replication_configuration_destination, {})
+  replication_configuration_destination = try(each.value.replication_configuration_destination, var.efs_defaults.replication_configuration_destination, null)
   security_group_description            = try(each.value.security_group_description, var.efs_defaults.security_group_description, "${local.common_name}-efs-${each.key}")
   security_group_name                   = try(each.value.security_group_name, var.efs_defaults.security_group_name, "${local.common_name}-efs-${each.key}")
-  security_group_rules = try(each.value.security_group_rules, var.efs_defaults.security_group_rules, {
+  security_group_ingress_rules = try(each.value.security_group_ingress_rules, var.efs_defaults.security_group_ingress_rules, {
     vpc = {
       # relying on the defaults provdied for EFS/NFS (2049/TCP + ingress)
       description = "NFS ingress from VPC"
-      cidr_blocks = [data.aws_vpc.this[each.key].cidr_block]
+      cidr_ipv4   = [data.aws_vpc.this[each.key].cidr_block]
     }
     }
   )
+  security_group_egress_rules               = try(each.value.security_group_egress_rules, var.efs_defaults.security_group_egress_rules, {})
   security_group_use_name_prefix            = try(each.value.security_group_use_name_prefix, var.efs_defaults.security_group_use_name_prefix, false)
   security_group_vpc_id                     = try(each.value.security_group_vpc_id, var.efs_defaults.security_group_vpc_id, data.aws_vpc.this[each.key].id)
   source_policy_documents                   = try(each.value.source_policy_documents, var.efs_defaults.source_policy_documents, [])
   throughput_mode                           = try(each.value.throughput_mode, var.efs_defaults.throughput_mode, null)
   deny_nonsecure_transport_via_mount_target = try(each.value.deny_nonsecure_transport_via_mount_target, var.efs_defaults.deny_nonsecure_transport_via_mount_target, true)
-  protection                                = try(each.value.protection, var.efs_defaults.protection, {})
+  protection                                = try(each.value.protection, var.efs_defaults.protection, null)
 
   tags = merge(local.common_tags, try(each.value.tags, var.efs_defaults.tags, null))
 }
