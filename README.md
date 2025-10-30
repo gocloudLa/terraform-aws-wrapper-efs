@@ -15,7 +15,7 @@ The Terraform Wrapper for EFS simplifies the creation of Amazon's Elastic File S
 ### 🔗 External Modules
 | Name | Version |
 |------|------:|
-| <a href="https://github.com/terraform-aws-modules/terraform-aws-efs" target="_blank">terraform-aws-modules/efs/aws</a> | 1.8.0 |
+| <a href="https://github.com/terraform-aws-modules/terraform-aws-efs" target="_blank">terraform-aws-modules/efs/aws</a> | 2.0.0 |
 
 
 
@@ -78,12 +78,13 @@ efs_parameters = {
 | mount_targets                             | Mount targets for the EFS                                                                                                                               | `list`   | `local.default_mount_targets`                        | no       |
 | override_policy_documents                 | Policy documents that override default policies                                                                                                         | `list`   | `[]`                                                 | no       |
 | performance_mode                          | Performance mode of the EFS                                                                                                                             | `string` | `null`                                               | no       |
-| policy_statements                         | IAM policy statements to attach to the EFS                                                                                                              | `list`   | `[]`                                                 | no       |
+| policy_statements                         | A list of IAM policy statements for custom permission usage                                                                                             | `map`    | `null`                                               | no       |
 | provisioned_throughput_in_mibps           | Provisioned throughput in MiBps                                                                                                                         | `number` | `null`                                               | no       |
-| replication_configuration_destination     | Destination for EFS replication configuration                                                                                                           | `map`    | `{}`                                                 | no       |
+| replication_configuration_destination     | Destination for EFS replication configuration                                                                                                           | `map`    | `null`                                               | no       |
 | security_group_description                | Description of the security group for the EFS                                                                                                           | `string` | `"${local.common_name}-efs-${each.key}"`             | no       |
 | security_group_name                       | Name of the security group for the EFS                                                                                                                  | `string` | `"${local.common_name}-efs-${each.key}"`             | no       |
-| security_group_rules                      | Security group rules for the EFS                                                                                                                        | `list`   | `local.default_security_group_rules`                 | no       |
+| input_security_group_egress_rules         | Map of security group egress rules to add to the security group created                                                                                 | `map`    | `{}`                                                 | no       |
+| input_security_group_ingress_rules        | Map of security group ingress rules to add to the security group created                                                                                | `map`    | `{}`                                                 | no       |
 | security_group_use_name_prefix            | Whether to use a name prefix for the security group                                                                                                     | `bool`   | `false`                                              | no       |
 | security_group_vpc_id                     | VPC ID to associate with the security group                                                                                                             | `string` | `data.aws_vpc.this[each.key].id`                     | no       |
 | source_policy_documents                   | Source policy documents for the EFS                                                                                                                     | `list`   | `[]`                                                 | no       |
@@ -91,7 +92,8 @@ efs_parameters = {
 | vpc_name                                  | (optional) Custom VPC Name                                                                                                                              | `string` | ``${local.common_name}` (dmc-prd)`                   | no       |
 | subnet_name                               | (optional) Custom Subnet Filter                                                                                                                         | `string` | ``${local.common_name}-private*` (dmc-prd-private*)` | no       |
 | deny_nonsecure_transport_via_mount_target | Determines whether to use the common policy option for denying nonsecure transport which allows all AWS principals when accessed via EFS mounted target | `bool`   | `true`                                               | no       |
-| protection                                | A map of file protection configurations                                                                                                                 | `any`    | `{}`                                                 | no       |
+| protection                                | A map of file protection configurations                                                                                                                 | `any`    | `null`                                               | no       |
+| region                                    | Region where this resource will be managed. Defaults to the Region set in the provider configuration.                                                   | string   | null                                                 | no       |
 | tags                                      | A map of tags to assign to resources.                                                                                                                   | `map`    | `{}`                                                 | no       |
 
 
