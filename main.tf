@@ -32,7 +32,7 @@ module "efs" {
     vpc = {
       # relying on the defaults provdied for EFS/NFS (2049/TCP + ingress)
       description = "NFS ingress from VPC"
-      cidr_ipv4   = [data.aws_vpc.this[each.key].cidr_block]
+      cidr_ipv4   = data.aws_vpc.this[each.key].cidr_block
     }
     }
   )
