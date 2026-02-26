@@ -4,7 +4,7 @@ module "wrapper_efs" {
   metadata = local.metadata
 
   efs_parameters = {
-    "00" = {
+    "01" = {
       # deny_nonsecure_transport_via_mount_target = false
       # vpc_name    = "" # Default: ${local.common_name} (dmc-prd)
       # subnet_name = "" # Default: ${local.common_name}-private* (dmc-prd-private*)

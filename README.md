@@ -24,7 +24,7 @@ The Terraform Wrapper for EFS simplifies the creation of Amazon's Elastic File S
 efs_parameters = {
     # vpc_name    = "" # Default: ${local.common_name} (dmc-prd)
     # subnet_name = "" # Default: ${local.common_name}-private* (dmc-prd-private*)
-    "00" = {
+    "01" = {
       access_points = {
         "root" = {
           root_directory = {
