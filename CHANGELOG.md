@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.1](https://github.com/gocloudLa/terraform-aws-wrapper-efs/compare/v1.0.0...v1.0.1) (2026-02-27)
+
+
+### Bug Fixes
+
+* **deps:** bump terraform-aws-modules/efs/aws from 1.8.0 to 2.0.0 in the all-terraform-dependencies group across 1 directory ([#3](https://github.com/gocloudLa/terraform-aws-wrapper-efs/issues/3)) ([5065967](https://github.com/gocloudLa/terraform-aws-wrapper-efs/commit/5065967f55c65aaf7f7cf749e9f8da5d75d2909a))
+* **deps:** bump terraform-aws-modules/efs/aws from 2.0.0 to 2.2.0 in the all-terraform-dependencies group across 1 directory ([#6](https://github.com/gocloudLa/terraform-aws-wrapper-efs/issues/6)) ([3ba4eff](https://github.com/gocloudLa/terraform-aws-wrapper-efs/commit/3ba4eff6815ad68818660a66cb8d316851188dd1))
+* **security-group:** object definition ([f38cd32](https://github.com/gocloudLa/terraform-aws-wrapper-efs/commit/f38cd32f167cf0291e665b1096fddd1be07be9c2))
+
 ## 1.0.0 (2025-09-05)
 
 
